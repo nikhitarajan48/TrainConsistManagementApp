@@ -1,13 +1,47 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-void main() {
-    //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-    // to see how IntelliJ IDEA suggests fixing it.
-    IO.println(String.format("Hello and welcome!"));
+import java.util.*;
 
-    for (int i = 1; i <= 5; i++) {
-        //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-        // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        IO.println("i = " + i);
+class Bogie {
+    private String type;
+    private int capacity;
+
+    public Bogie(String type, int capacity) {
+        this.type = type;
+        this.capacity = capacity;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    @Override
+    public String toString() {
+        return "Bogie{type='" + type + "', capacity=" + capacity + "}";
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        List<Bogie> bogies = new ArrayList<>();
+
+        bogies.add(new Bogie("Sleeper", 72));
+        bogies.add(new Bogie("AC Chair", 50));
+        bogies.add(new Bogie("Sleeper", 72));
+        bogies.add(new Bogie("First Class", 40));
+        bogies.add(new Bogie("AC Chair", 50));
+        bogies.add(new Bogie("Cylindrical", 0));
+        bogies.add(new Bogie("Rectangular", 0));
+
+        int totalCapacity = bogies.stream()
+                .map(b -> b.getCapacity())
+                .reduce(0, Integer::sum);
+
+        System.out.println("Total Seating Capacity: " + totalCapacity);
+
+        System.out.println("Original List Size: " + bogies.size());
     }
 }
