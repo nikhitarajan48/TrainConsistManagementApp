@@ -1,13 +1,48 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-void main() {
-    //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-    // to see how IntelliJ IDEA suggests fixing it.
-    IO.println(String.format("Hello and welcome!"));
+import java.util.*;
 
-    for (int i = 1; i <= 5; i++) {
-        //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-        // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        IO.println("i = " + i);
+class GoodsBogie {
+    private String type;
+    private String cargo;
+
+    public GoodsBogie(String type, String cargo) {
+        this.type = type;
+        this.cargo = cargo;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getCargo() {
+        return cargo;
+    }
+
+    @Override
+    public String toString() {
+        return "GoodsBogie{type='" + type + "', cargo='" + cargo + "'}";
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        List<GoodsBogie> bogies = new ArrayList<>();
+
+        bogies.add(new GoodsBogie("Cylindrical", "Petroleum"));
+        bogies.add(new GoodsBogie("Rectangular", "Coal"));
+        bogies.add(new GoodsBogie("Cylindrical", "Petroleum"));
+        bogies.add(new GoodsBogie("Open", "Grain"));
+
+        boolean isSafe = bogies.stream()
+                .allMatch(b ->
+                        !b.getType().equalsIgnoreCase("Cylindrical") ||
+                                b.getCargo().equalsIgnoreCase("Petroleum")
+                );
+
+        if (isSafe) {
+            System.out.println("Train is Safety Compliant");
+        } else {
+            System.out.println("Train is NOT Safety Compliant");
+        }
     }
 }
