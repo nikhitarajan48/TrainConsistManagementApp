@@ -28,3 +28,12 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+src/oracleJdk-26/
+*.class
+# Ignore bundled JDK
+src/oracleJdk-26/
+
+# Ignore any JDK folders
+src/*jdk*/
+src/*JDK*/

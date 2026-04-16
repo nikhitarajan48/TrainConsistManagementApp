@@ -1,13 +1,68 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-void main() {
-    //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-    // to see how IntelliJ IDEA suggests fixing it.
-    IO.println(String.format("Hello and welcome!"));
+import java.util.*;
 
-    for (int i = 1; i <= 5; i++) {
-        //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-        // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        IO.println("i = " + i);
+class PassengerBogie {
+    private String type;
+    private int capacity;
+
+    public PassengerBogie(String type, int capacity) {
+        this.type = type;
+        this.capacity = capacity;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    @Override
+    public String toString() {
+        return "PassengerBogie{type='" + type + "', capacity=" + capacity + "}";
+    }
+}
+
+public class Main {
+
+    
+    public static void sortBogiesByCapacity(List<PassengerBogie> bogies) {
+        int n = bogies.size();
+
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+
+                if (bogies.get(j).getCapacity() > bogies.get(j + 1).getCapacity()) {
+                    PassengerBogie temp = bogies.get(j);
+                    bogies.set(j, bogies.get(j + 1));
+                    bogies.set(j + 1, temp);
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+
+        List<PassengerBogie> bogies = new ArrayList<>();
+
+        bogies.add(new PassengerBogie("Sleeper", 72));
+        bogies.add(new PassengerBogie("AC Chair", 56));
+        bogies.add(new PassengerBogie("First Class", 24));
+        bogies.add(new PassengerBogie("Sleeper", 70));
+        bogies.add(new PassengerBogie("AC Chair", 60));
+
+        System.out.println("Before Sorting:");
+        for (PassengerBogie b : bogies) {
+            System.out.println(b);
+        }
+
+        sortBogiesByCapacity(bogies);
+
+        System.out.println("\nAfter Sorting by Capacity:");
+        for (PassengerBogie b : bogies) {
+            System.out.println(b);
+        }
+
+        System.out.println("\nProgram continues...");
     }
 }
