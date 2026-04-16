@@ -1,25 +1,44 @@
-import java.util.Arrays;
+import java.util.*;
 
 public class Main {
 
+    
+    static boolean searchBogie(String[] bogieIds, String searchKey) {
+        for (String id : bogieIds) {
+            if (id.equals(searchKey)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
 
-        String[] bogieNames = {
-            "Sleeper",
-            "AC Chair",
-            "First Class",
-            "General",
-            "Luxury"
+        String[] bogieIds = {
+            "BG101",
+            "BG205",
+            "BG309",
+            "BG412",
+            "BG550"
         };
 
-        System.out.println("Before Sorting:");
-        System.out.println(Arrays.toString(bogieNames));
+        Scanner sc = new Scanner(System.in);
 
-        Arrays.sort(bogieNames);
+        System.out.println("Available Bogie IDs:");
+        System.out.println(Arrays.toString(bogieIds));
 
-        System.out.println("\nAfter Sorting Alphabetically:");
-        System.out.println(Arrays.toString(bogieNames));
+        System.out.print("\nEnter bogie ID to search: ");
+        String searchKey = sc.nextLine();
 
-        System.out.println("\nProgram continues...");
+        boolean found = searchBogie(bogieIds, searchKey);
+
+        if (found) {
+            System.out.println("Bogie ID " + searchKey + " found in consist.");
+        } else {
+            System.out.println("Bogie ID " + searchKey + " not found.");
+        }
+
+        System.out.println("Program continues...");
+        sc.close();
     }
 }
